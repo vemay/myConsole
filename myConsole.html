@@ -19,8 +19,10 @@
 <script>
   var jsonStr = '{"name":"小明","age":12}';
   var jsonData = {
-    name: '小明',
-    age: null
+    name: undefined,
+    age: null,
+    sex:'male',
+    class:3
   };
   var arrData = [1, 2, 'xiaoming', '小明', 5];
   var multiData = {
@@ -61,7 +63,7 @@
             try { //处理JSON格式字符串
               str = '--json字符串--<br>' + getJson(JSON.parse(obj))
             } catch (e) {
-              str += obj;
+              str += "'"+obj+"'";
             }
           } else {
             if (cst === Date) {
