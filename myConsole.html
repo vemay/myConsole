@@ -10,13 +10,14 @@
 
 <body>
 <button id="json" onclick='myConsole(jsonData)'>JSON显示效果</button>
+  <button id="json" onclick='myConsole(jsonStr)'>JSON字符串显示效果</button>
   <button id="arr" onclick='myConsole(arrData)'>数组显示效果</button>
   <button id="multi" onclick='myConsole(multiData)'>多层嵌套显示效果</button>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 <script>
-
+  var jsonStr = '{"name":"小明","age":12}';
   var jsonData = {
     name: '小明',
     age: 12
@@ -52,10 +53,18 @@
       var deep = floor || 1;
       if (obj.constructor === Number || obj.constructor === String || obj.constructor === Boolean || obj.constructor ===
         Date) {
-        if (obj.constructor === Date) {
-          obj = obj.toLocaleString();
+        if (obj.constructor === String) {
+          try {  //处理JSON格式字符串
+             str = '--json字符串--<br>' + getJson(JSON.parse(obj))
+          } catch (e) {
+            str += obj;
+          }
+        } else {
+          if (obj.constructor === Date) {
+            obj = obj.toLocaleString();
+          }
+          str += obj;
         }
-        str += obj;
 
       } else {
         if (obj.constructor === Array) {
