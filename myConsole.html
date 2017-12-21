@@ -12,6 +12,7 @@
   <button id="json" onclick='myConsole(jsonData)'>JSON显示效果</button>
   <button id="json" onclick='myConsole(jsonStr)'>JSON字符串显示效果</button>
   <button id="arr" onclick='myConsole(arrData,true)'>数组显示效果</button>
+  <button id="arr" onclick='myConsole(funData,true)'>函数显示效果</button>
   <button id="multi" onclick='myConsole(multiData)'>多层嵌套显示效果</button>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -25,6 +26,9 @@
     class: 3
   };
   var arrData = [1, 2, 'xiaoming', '小明', 5];
+  var funData = function () {
+    console.log(this.name)
+  }
   var multiData = {
     name: '小明',
     skill: ['足球', '音乐', '数学'],
@@ -58,7 +62,7 @@
         var cst = obj.constructor;
 
         if (cst === Number || cst === String || cst === Boolean || cst ===
-          Date) {
+          Date || cst === Function) {
           if (cst === String) {
             try { //处理JSON格式字符串
               str = '--json字符串--<br>' + getJson(JSON.parse(obj))
